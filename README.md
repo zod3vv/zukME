@@ -51,6 +51,7 @@
 ## Interface requirements
 - Auto-retaliate disabled: ![alt text](image-3.png)
 - Multiple action bars to fit all of the abilities. Refer to the section below for more info.
+- Ability queuing disabled
 - Full manual **enabled** (Settings -> Gameplay -> Combat & Action Bar -> Combat Mode -> Full Manual)
 - Necromancy auto attack **disabled** (Settings -> Gameplay -> Combat & Action Bar -> Combat Mode -> Auto Attack)
 
