@@ -14,7 +14,7 @@
 - Uses [SonSon's Prayer Flicker](https://github.com/sonsonmagro/Sonsons-Prayer-Flicker) for prayer management (already included as part of this repo)
 - Uses an old Timer library from nullopt
 # Tested with the following
-*NOTE: You'll notice that there are no BIS requirements. Using better stuff will probably speed things up a bit.*
+*NOTE: You'll notice that there are no BIS requirements. Using better stuff will probably speed things up a bit. Testing was also done without an Aura or familiar.*
 ### Gear
 - T90 Tank Necro robes (important, we tank a lot throughout the fight with these + Darkness)
 - Tokkul Zo Ring (2,000+ charges recommended)
