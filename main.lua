@@ -426,11 +426,9 @@ local function withinAttackRange()
   if target ~= nil then
     local distance = API.Dist_FLP(target.Tile_XYZ)
     if distance <= 8 then
-      print("Within attack range")
       return true
     end
   end
-  print("Not within attack range")
   return false
 end
 
@@ -1139,7 +1137,6 @@ local function doRotation()
     elseif areTargetsAlive({ POSSIBLE_TARGETS.Igneous_Xil, POSSIBLE_TARGETS.Igneous_Mej }) then
       return thresholdRotation()
     elseif extraActionButtonVisible() and adren < (HAS_ZUK_CAPE and 80 or 100) then
-      print("Igneous wave, extra action button visible, adren < 80")
       return buildAdrenRotation()
     elseif extraActionButtonVisible() and adren >= (HAS_ZUK_CAPE and 80 or 100) then
       if useAbility("Split Soul") then
