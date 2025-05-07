@@ -116,5 +116,6 @@ Setup.USE_POISON           = true                 -- Whether to use weapon poiso
 1. Ensure you are geared and `setup.lua` is happy as shown in the previous section.
 2. In game, head to Zuk (I'll usually charge from adren crystal then enter portal at Wars)
 3. Start the fight by talking to Zuk.
-  * **NOTE**: You will either be prompted for a fresh instance or to start from a checkpoint wave. Either option is fine for this script.
+  * **NOTE**:You will either be prompted for a fresh instance or to start from a checkpoint wave. Either option is fine for this script.
 4. Once you are in the fight, run the `main.lua` file located in the same folder as `setup.lua`.
+  * **NOTE**:When loading the script, navigate to it by double clicking the folder first and then `main.lua`. For some reason, the quick load option in the bottom left does not find the library files correctly and the script will not run.
