@@ -72,6 +72,7 @@ Lua_Scripts/
         ├── prayer_flicker.lua
         └── timer.lua
 ```
+3. Make sure cache loading is enabled in the `settings.json` file for ME.
 
 # Before your first run
 1. You will need to edit the `setup.lua` file to match your gear and consumables:

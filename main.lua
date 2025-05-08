@@ -11,17 +11,17 @@ USE_BOOK = Setup.USE_BOOK
 USE_POISON = Setup.USE_POISON
 USE_EXCAL = Setup.USE_EXCAL
 USE_ELVEN_SHARD = Setup.USE_ELVEN_SHARD
-OVERLOAD_NAME = Setup.OVERLOAD_NAME
+OVERLOAD_NAME = type(Setup.OVERLOAD_NAME) == "string" and Setup.OVERLOAD_NAME or ""
 OVERLOAD_BUFF_ID = Setup.OVERLOAD_BUFF_ID
-NECRO_PRAYER_NAME = Setup.NECRO_PRAYER_NAME
+NECRO_PRAYER_NAME = type(Setup.NECRO_PRAYER_NAME) == "string" and Setup.NECRO_PRAYER_NAME or ""
 NECRO_PRAYER_BUFF_ID = Setup.NECRO_PRAYER_BUFF_ID
-BOOK_NAME = Setup.BOOK_NAME
+BOOK_NAME = type(Setup.BOOK_NAME) == "string" and Setup.BOOK_NAME or ""
 BOOK_BUFF_ID = Setup.BOOK_BUFF_ID
-RESTORE_NAME = Setup.RESTORE_NAME
-FOOD_NAME = Setup.FOOD_NAME
-FOOD_POT_NAME = Setup.FOOD_POT_NAME
-ADREN_POT_NAME = Setup.ADREN_POT_NAME
-RING_SWITCH = Setup.RING_SWITCH
+RESTORE_NAME = type(Setup.RESTORE_NAME) == "string" and Setup.RESTORE_NAME or ""
+FOOD_NAME = type(Setup.FOOD_NAME) == "string" and Setup.FOOD_NAME or ""
+FOOD_POT_NAME = type(Setup.FOOD_POT_NAME) == "string" and Setup.FOOD_POT_NAME or ""
+ADREN_POT_NAME = type(Setup.ADREN_POT_NAME) == "string" and Setup.ADREN_POT_NAME or ""
+RING_SWITCH = type(Setup.RING_SWITCH) == "string" and Setup.RING_SWITCH or ""
 ---------------------------------------------------------------------
 --# END
 ---------------------------------------------------------------------
@@ -54,6 +54,8 @@ local TIMERS = {
 ---------------------------------------------------------------------
 --- @type WPOINT | nil
 SAFESPOT_JAD = nil
+--- @type WPOINT | nil
+SAFESPOT_NORMAL = nil
 ARENA_MIN_X = math.mininteger
 ARENA_MAX_X = math.maxinteger
 ARENA_MIN_Y = math.mininteger
@@ -126,7 +128,7 @@ WAVE_TARGETS = {
   [3] = {
     [POSSIBLE_TARGETS.Kih] = { priority = 4 },
     [POSSIBLE_TARGETS.Xil] = { priority = 8 },
-    [POSSIBLE_TARGETS.Mejkot] = { priority = 6 },
+    [POSSIBLE_TARGETS.Mejkot] = { priority = 8 },
     [POSSIBLE_TARGETS.Hur] = { priority = 1 }
   },
   [4] = { -- igneous wave
@@ -260,10 +262,10 @@ local function needsTarget()
         target.Id == 0)
       and
       (targetInfo == nil or
-        targetInfo.Hitpoints <= 0 or
-        targetInfo.Target_Name == nil or
-        targetInfo.Target_Name == "" or
-        targetInfo.Target_Name == "Tap to find target")
+        (targetInfo.Hitpoints <= 0 and (
+          targetInfo.Target_Name:match("^%s*$") or
+          targetInfo.Target_Name:gsub("^%s*(.-)%s*$", "%1") == "" or
+          targetInfo.Target_Name == "Tap to find target")))
 end
 
 local function getHighestPriorityTarget()
@@ -1076,7 +1078,7 @@ local function harAkenRotation()
   if useAbility("Split Soul") then return end
 
   if FIGHT_STATE.targetInfo.Hitpoints > 60000 then
-    if useAbility("Living Death") then return end
+    if useAbility("Death Skulls") then return end
   end
 
   if not targetBloated() then
@@ -1307,9 +1309,8 @@ local function findArenaCoords()
     local zukX = math.floor(zuk.Tile_XYZ.x)
     local zukY = math.floor(zuk.Tile_XYZ.y)
     print("Finding arena coords for " .. tostring(zukX) .. ", " .. tostring(zukY))
-    -- local zukX = zuk.CalcX
-    -- local zukY = zuk.CalcY
     SAFESPOT_JAD = WPOINT.new(zukX - 8, zukY - 14, 0)
+    SAFESPOT_NORMAL = WPOINT.new(zukX + 9, zukY - 21, 0)
     ARENA_MIN_X = zukX - 15
     ARENA_MAX_X = zukX + 15
     ARENA_MAX_Y = zukY - 4
