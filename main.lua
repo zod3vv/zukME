@@ -412,6 +412,9 @@ local function moveWithinAreaOfTarget(target)
       if API.DoAction_Ability_check("Surge", 1, API.OFF_ACT_GeneralInterface_route, true, true, true) then
         API.RandomSleep2(300, 200, 200)
         API.DoAction_Tile(tile)
+      else
+        API.RandomSleep2(300, 200, 200)
+        API.DoAction_Tile(tile)
       end
     end
   else
